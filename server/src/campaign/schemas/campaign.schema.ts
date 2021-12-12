@@ -5,6 +5,7 @@ import { DiscountCode, DiscountCodeSchema } from './discount-code.schema';
 
 export type CampaignDocument = Campaign & Document;
 
+
 @Schema({
     timestamps: true
 })

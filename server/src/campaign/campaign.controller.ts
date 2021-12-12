@@ -16,7 +16,7 @@ export class CampaignController {
         })
     }
 
-    @Get('/campaign/:campaignD')
+    @Get('/campaign/:campaignId')
     async getCampaign(@Res() res, @Param('campaignId', new ValidateObjectId()) campaignId) {
         const campaign = await this.campaignService.getCampaign(campaignId);
         if(!campaign) {
@@ -32,8 +32,8 @@ export class CampaignController {
         return res.status(HttpStatus.OK).json(campaigns);
     }
 
-    @Put('/edit')
-    async editcampaign(
+    @Put('/campaign')
+    async editCampaign(
         @Res() res, 
         @Query('campaignId', new ValidateObjectId()) campaignId,
         @Body() campaignDTO: CampaignDTO,
@@ -59,6 +59,20 @@ export class CampaignController {
         res.status(HttpStatus.OK).json({
             message: 'Campaign has been deleted!',
             campaign: deletedCampaign
+        })
+    }
+
+    @Put('/campaign/:campaignId/claim')
+    async assignDiscountCode(
+        @Res() res, 
+        @Param('campaignId', new ValidateObjectId()) campaignId,
+        @Body() recipient: { recipient: string},
+    ) {
+        const editedCampaign = await this.campaignService.assignDiscountCode(campaignId, recipient.recipient);
+        
+        return res.status(HttpStatus.OK).json({
+            message: 'Discount code has successfully been assigned',
+            discountCode: editedCampaign
         })
     }
 }

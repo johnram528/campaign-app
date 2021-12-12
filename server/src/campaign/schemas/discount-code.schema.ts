@@ -9,6 +9,8 @@ export class DiscountCode {
 
   @Prop()
   recipient: string;
+
+  _id?:string;
 }
 
 export const DiscountCodeSchema = SchemaFactory.createForClass(DiscountCode);

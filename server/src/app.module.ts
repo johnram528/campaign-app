@@ -6,7 +6,7 @@ import { CampaignModule } from './campaign/campaign.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/nest-blog-project', { useNewUrlParser: true }),
+    MongooseModule.forRoot('mongodb://localhost/campaign', { useNewUrlParser: true }),
     CampaignModule,
   ],
   controllers: [AppController],
