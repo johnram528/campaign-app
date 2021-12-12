@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import { theme, ThemeProvider } from '@chakra-ui/core'
 import './App.css';
 
