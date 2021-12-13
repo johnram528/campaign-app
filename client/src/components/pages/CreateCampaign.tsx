@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  FormErrorMessage,
   FormLabel,
   FormControl,
   Input,
@@ -19,8 +18,25 @@ function CreateCampaign(): JSX.Element {
     interface IValues {
         [key: string]: any;
     }
+    const initialDiscountCodeObj = {code: "", recipient: ""}
+    const initialState = {
+      name: "",
+      description: "",
+      discountCodes: [
+        initialDiscountCodeObj,
+        initialDiscountCodeObj,
+        initialDiscountCodeObj,
+        initialDiscountCodeObj,
+        initialDiscountCodeObj,
+        initialDiscountCodeObj,
+        initialDiscountCodeObj,
+        initialDiscountCodeObj,
+        initialDiscountCodeObj,
+        initialDiscountCodeObj,
+      ]
+    }
 
-    const [values, setValues] = useState<IValues>([]);
+    const [values, setValues] = useState<IValues>(initialState);
     const [submitSuccess, setSubmitSuccess] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
 
@@ -59,7 +75,7 @@ function CreateCampaign(): JSX.Element {
             toast({
               title: "Success!",
               description: 'The campaign has been created.',
-              status: "error",
+              status: "success",
               duration: 9000,
               isClosable: true,
             })
@@ -77,17 +93,35 @@ function CreateCampaign(): JSX.Element {
     }
 
     const setFormValues = (formValues: IValues) => {
+      console.log(formValues)
         setValues({
             ...values,
             ...formValues
         })
     }
 
-    const handleInputChanges = (e: React.FormEvent<HTMLInputElement>) => {
+    const setDiscountCodes = (formValues: IValues, index: number) => {
+      console.log(index)
+        setValues({
+            ...values,
+            discountCodes: [
+              ...values.discountCodes.map((dc: any, i: any) => i === index ? formValues : dc)
+            ]
+            
+        })
+    }
+
+    const handleInputChanges = (e: React.FormEvent<HTMLInputElement>, index?: number) => {
         e.preventDefault();
-        setFormValues({
+        if(e.currentTarget.name === 'code') {
+          setDiscountCodes({
+            [e.currentTarget.name]: e.currentTarget.value
+        }, index || 0)
+        }else {
+          setFormValues({
             [e.currentTarget.name]: e.currentTarget.value
         })
+        }
     }
 
 
@@ -100,12 +134,12 @@ function CreateCampaign(): JSX.Element {
               {!submitSuccess && (
                   <div className="alert alert-info" role="alert">
                     Fill out the form below to create a new campaign.
-                          </div>
+                  </div>
                 )}
                 {submitSuccess && (
                   <div className="alert alert-info" role="alert">
                     The form was successfully submitted!
-                                  </div>
+                  </div>
                 )}
               <FormControl>
                 <FormLabel htmlFor="name">Campaign name</FormLabel>
@@ -123,14 +157,20 @@ function CreateCampaign(): JSX.Element {
                   onChange={(e: React.FormEvent<HTMLInputElement>) => handleInputChanges(e)}
                 />
               </FormControl>
-              <FormControl>
-                <FormLabel htmlFor="discountCodes">Discount Codes</FormLabel>
-                <Input
-                  name="discountCodes"
-                  placeholder="discount code"
-                  onChange={(e: React.FormEvent<HTMLInputElement>) => handleInputChanges(e)}
-                />
-              </FormControl>
+              <Heading as="h3" size="lg">
+                Discount Codes
+              </Heading>
+              {values.discountCodes.map((discountCode: any, i: number) =>
+                <FormControl key={i}>
+                  <FormLabel htmlFor="code">Code</FormLabel>
+                    <Input
+                      name="code"
+                      placeholder="discount code"
+                      onChange={(e: React.FormEvent<HTMLInputElement>) => handleInputChanges(e, i)}
+                    />
+                </FormControl>
+              )}
+
               <Button
                 mt={4}
                 variantColor="teal"
