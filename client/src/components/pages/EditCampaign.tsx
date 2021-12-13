@@ -47,7 +47,7 @@ function EditCampaign(): JSX.Element {
         setLoading(false);
         if(submitSuccess) {
             navigate('/');
-          }
+        }
     }
 
     const submitForm = async () => {

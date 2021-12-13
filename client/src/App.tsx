@@ -5,6 +5,7 @@ import CreateCampaign from './components/pages/CreateCampaign';
 import { Route, Routes } from 'react-router';
 import Home from './components/pages/Home';
 import EditCampaign from './components/pages/EditCampaign';
+import ViewCampaign from './components/pages/ViewCampaign';
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path={"/campaign/new"} element={<CreateCampaign />}/>
             <Route path={"/campaign/:campaignId/edit"} element={<EditCampaign />}/>
-            {/* <Route path={"/campaign/:campaignId/edit"} element={<ViewCampaign />}/> */}
+            <Route path={"/campaign/:campaignId/view"} element={<ViewCampaign />}/>
           </Routes>
         </div>
       </div>
