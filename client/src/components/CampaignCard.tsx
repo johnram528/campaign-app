@@ -8,11 +8,11 @@ const CampaignCard = (props: any): JSX.Element => {
 
     return (
         <Box
-        backgroundColor="white"
-        ml={0}
-        mr={0}
-        borderRadius={8}
-        boxShadow="0px 4px 10px rgba(0, 0, 0, 0.05)"
+            backgroundColor="white"
+            ml={0}
+            mr={0}
+            borderRadius={8}
+            boxShadow="0px 4px 10px rgba(0, 0, 0, 0.05)"
         >
         <Box
             borderTopLeftRadius={8}
@@ -30,10 +30,10 @@ const CampaignCard = (props: any): JSX.Element => {
             <Heading size="lg">{props.campaign.name}</Heading>
             <Text>{props.campaign.description}</Text>
             <Button onClick={()=> navigate(`/campaign/${props.campaign._id}/edit`)}>
-            Edit Campaign
+                Edit Campaign
             </Button>
             <Button onClick={()=> navigate(`/campaign/${props.campaign._id}/view`)}>
-            View Campaign
+                View Campaign
             </Button>
         </Stack>
         </Box>
