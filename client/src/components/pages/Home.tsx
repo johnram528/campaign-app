@@ -20,12 +20,12 @@ function Home():JSX.Element {
 
     return (
         <Box
-            borderTopLeftRadius={8}
-            borderTopRightRadius={8}
+            marginTop="15px"
             height="60px"
             backgroundColor="white"
+            paddingLeft="10px"
         >
-            <Link to={`/campaign/new`} className="btn btn-sm btn-outline-secondary">Create New Campaign </Link>
+            {!!campaigns.length && <Link to={`/campaign/new`} className="btn btn-sm btn-outline-secondary">Create New Campaign </Link>}
             <Stack
                 justifyContent="center"
                 alignItems="center"

@@ -9,7 +9,8 @@ import {
   Stack,
   Box,
   Flex,
-  useToast
+  useToast,
+  CloseButton
 } from "@chakra-ui/core";
 
 function CreateCampaign(): JSX.Element {
@@ -70,8 +71,9 @@ function CreateCampaign(): JSX.Element {
                 }),
                 body: JSON.stringify(formData)
             });
+            const json = await response.json();
             if (!response.ok) {
-              const message = `An error has occured: ${response.status}`;
+              const message = `An error has occured: ${json.message}`;
               throw new Error(message);
             }
             toast({
@@ -103,11 +105,11 @@ function CreateCampaign(): JSX.Element {
     }
 
     const setDiscountCodes = (formValues: IValues, index: number) => {
-      console.log(index)
+      console.log(formValues)
         setValues({
             ...values,
             discountCodes: [
-              ...values.discountCodes.map((dc: any, i: any) => i === index ? formValues : dc)
+              ...values.discountCodes.map((dc: any, i: any) => i === index ? {...formValues, recipient: ""} : dc)
             ]
             
         })

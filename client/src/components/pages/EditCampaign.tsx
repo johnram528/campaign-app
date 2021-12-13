@@ -60,8 +60,9 @@ function EditCampaign(): JSX.Element {
                 }),
                 body: JSON.stringify(values)
             });
+            const json = await response.json();
             if (!response.ok) {
-              const message = `An error has occured: ${response.status}`;
+              const message = `An error has occured: ${json.message}`;
               throw new Error(message);
             }
             toast({

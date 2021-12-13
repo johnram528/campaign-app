@@ -8,7 +8,7 @@ const CampaignCard = (props: any): JSX.Element => {
 
     return (
         <Box
-            backgroundColor="green.100"
+            backgroundColor="teal.100"
             ml={0}
             mr={0}
             borderRadius={8}
@@ -16,13 +16,6 @@ const CampaignCard = (props: any): JSX.Element => {
             w="50%"
             marginBottom="15px"
         >
-        <Box
-            borderTopLeftRadius={8}
-            borderTopRightRadius={8}
-            borderBottom="1px solid green.900"
-            height="40px"
-            backgroundColor="green.300"
-        />
         <Stack
             justifyContent="space-between"
             alignItems="center"
