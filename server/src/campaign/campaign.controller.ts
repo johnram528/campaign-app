@@ -9,6 +9,7 @@ export class CampaignController {
 
     @Post('/campaign')
     async addCampaign(@Res() res, @Body() campaignDTO: CampaignDTO) {
+        console.log(campaignDTO)
         const newCampaign = await this.campaignService.addCampaign(campaignDTO);
         return res.status(HttpStatus.OK).json({
             message: 'Campaign has been submitted successfully!',
@@ -32,10 +33,10 @@ export class CampaignController {
         return res.status(HttpStatus.OK).json(campaigns);
     }
 
-    @Put('/campaign')
+    @Put('/campaign/:campaignId')
     async editCampaign(
         @Res() res, 
-        @Query('campaignId', new ValidateObjectId()) campaignId,
+        @Param('campaignId', new ValidateObjectId()) campaignId,
         @Body() campaignDTO: CampaignDTO,
     ) {
         const editedCampaign = await this.campaignService.editCampaign(campaignId, campaignDTO);
@@ -62,7 +63,7 @@ export class CampaignController {
         })
     }
 
-    @Put('/campaign/:campaignId/claim')
+    @Put('/campaign/:campaignId/assign')
     async assignDiscountCode(
         @Res() res, 
         @Param('campaignId', new ValidateObjectId()) campaignId,

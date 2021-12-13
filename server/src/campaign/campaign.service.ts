@@ -10,6 +10,10 @@ export class CampaignService {
     constructor(@InjectModel(Campaign.name) private readonly campaignModel: Model<CampaignDocument>) { }
     
     async addCampaign(campaignDTO: CampaignDTO): Promise<Campaign> {
+        if(!campaignDTO.discountCodes) {
+            throw new BadRequestException('Discount Codes are required!');
+        }
+
         if(!this._isObjectValueInArrayUnique(campaignDTO.discountCodes, 'code')) {
             throw new BadRequestException('Discount Codes in a campaign must be unique!');
         }
@@ -46,7 +50,7 @@ export class CampaignService {
         if(!campaign) {
             throw new NotFoundException('Campaign does not exist!'); 
         }
-
+        
         const availableDiscountCode = campaign.discountCodes.find(code => code.recipient === '');
 
         if(!availableDiscountCode) {
