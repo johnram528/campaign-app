@@ -1,7 +1,10 @@
 import React from 'react'
 import { Box, Heading, Stack, Text, Button } from '@chakra-ui/core'
+import { useNavigate } from 'react-router-dom';
 
 const EmptyState = (): JSX.Element => {
+  let navigate = useNavigate();
+  
   return (
     <Box
       backgroundColor="white"
@@ -27,7 +30,7 @@ const EmptyState = (): JSX.Element => {
       >
         <Heading size="lg">You haven’t added any campaigns.</Heading>
         <Text>Let’s get started.</Text>
-        <Button>
+        <Button onClick={() => navigate('/new')}>
           Create your first campaign!
         </Button>
       </Stack>
