@@ -30,7 +30,7 @@ const EmptyState = (): JSX.Element => {
       >
         <Heading size="lg">You haven’t added any campaigns.</Heading>
         <Text>Let’s get started.</Text>
-        <Button onClick={() => navigate('/new')}>
+        <Button onClick={() => navigate('/campaign/new')}>
           Create your first campaign!
         </Button>
       </Stack>

@@ -23,13 +23,13 @@ function Home():JSX.Element {
             borderTopLeftRadius={8}
             borderTopRightRadius={8}
             height="60px"
-            backgroundColor="green.50"
+            backgroundColor="white"
         >
             <Link to={`/campaign/new`} className="btn btn-sm btn-outline-secondary">Create New Campaign </Link>
             <Stack
                 justifyContent="center"
                 alignItems="center"
-                backgroundColor="green.50"
+                backgroundColor="white"
                 spacing={3}
                 p={8}
                 borderRadius={8}
@@ -40,7 +40,7 @@ function Home():JSX.Element {
             ))}
             </Stack>
         
-            {!campaigns && <EmptyState/>}
+            {!campaigns.length && <EmptyState />}
         </Box>
     );
 }
