@@ -55,7 +55,9 @@ function CreateCampaign(): JSX.Element {
         setSubmitSuccess(submitSuccess);
         setValues({...values, formData});
         setLoading(false);
-        navigate('/');
+        if(submitSuccess) {
+          navigate('/');
+        }
     }
 
     const submitForm = async (formData: {}) => {

@@ -13,6 +13,8 @@ const CampaignCard = (props: any): JSX.Element => {
             mr={0}
             borderRadius={8}
             boxShadow="0px 4px 10px rgba(0, 0, 0, 0.05)"
+            w="50%"
+            marginBottom="5px"
         >
         <Box
             borderTopLeftRadius={8}
